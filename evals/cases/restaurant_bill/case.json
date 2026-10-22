@@ -1,0 +1,5 @@
+{
+  "task": "what is wrong with bill.py?",
+  "expect": [["bill.py"]],
+  "why": "demo repo: one-file bug while another bug exists elsewhere; the fix must stay in bill.py"
+}

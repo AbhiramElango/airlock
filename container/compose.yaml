@@ -1,0 +1,36 @@
+# One network-isolated container (agent + Ollama). No route out; reach the UI via SSH tunnel to 172.30.0.10:8080.
+name: airlock
+services:
+  agent:
+    build: .
+    image: airlock:local
+    container_name: airlock
+    user: "${UID_GID:?set by scripts/container.sh}"
+    init: true
+    read_only: true
+    tmpfs: ["/tmp:size=256m"]
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    pids_limit: 256
+    environment:
+      AIRLOCK_MODEL: "${MODEL:-qwen3.5:4b}"
+      OLLAMA_MAX_LOADED_MODELS: "1"  # switching models in the UI never keeps two in RAM
+    mem_limit: 5500m
+    sysctls:
+      net.ipv4.ping_group_range: "0 2147483647"  # unprivileged ping, so the demo shows "unreachable" not "denied"
+    volumes:
+      - ..:/app:ro
+      - ../demo/work:/app/demo/work
+      - ../audit:/app/audit
+      - "${MODELS_DIR:?set by scripts/container.sh}:/models:ro"  # pulled beforehand with `ollama pull`
+    networks:
+      sandbox:
+        ipv4_address: 172.30.0.10
+
+networks:
+  sandbox:
+    internal: true
+    driver_opts:
+      com.docker.network.bridge.name: br-airlock
+    ipam:
+      config: [{subnet: 172.30.0.0/24}]

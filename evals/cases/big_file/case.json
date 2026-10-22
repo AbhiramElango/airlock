@@ -1,0 +1,9 @@
+{
+  "task": "the restock report lists items we have plenty of, and misses the ones that are running out",
+  "expect": [
+    [
+      "inventory.py"
+    ]
+  ],
+  "why": "one-character bug deep in a ~140-line module; tests full-file rewrite speed"
+}

@@ -1,0 +1,9 @@
+{
+  "task": "rentals are being billed negative amounts",
+  "expect": [
+    [
+      "billing.py"
+    ]
+  ],
+  "why": "caller swaps the argument order of a helper from another file"
+}

@@ -1,0 +1,9 @@
+{
+  "task": "the checkout total is wrong when a discount is applied",
+  "expect": [
+    [
+      "pricing.py"
+    ]
+  ],
+  "why": "symptom in checkout.py, bug in the helper it imports"
+}

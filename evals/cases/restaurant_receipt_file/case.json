@@ -1,0 +1,5 @@
+{
+  "task": "I think there is something wrong in receipt.py file",
+  "expect": [["tax.py"], ["settings.py"]],
+  "why": "demo repo, phrased like a real user: names receipt.py, cause is in tax.py; must not also fix bill.py"
+}

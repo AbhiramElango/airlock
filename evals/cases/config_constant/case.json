@@ -1,0 +1,12 @@
+{
+  "task": "invoices are charging way too much tax",
+  "expect": [
+    [
+      "settings.py"
+    ],
+    [
+      "invoice.py"
+    ]
+  ],
+  "why": "constant in a config file is a percentage where a fraction is expected; either file can be fixed"
+}

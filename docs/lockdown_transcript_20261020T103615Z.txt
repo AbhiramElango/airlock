@@ -1,0 +1,61 @@
+# lockdown demo | 2026-10-20T10:36:23Z | host TCentre | task: Fix the failing edge case in utils.py
+### 1. Lock down the network
+  before: default route: default via <lan-gateway> dev eno1 proto static metric 100 
+  allowing only SSH with <ssh-client-ip> on port 22
+  firewall active: everything dropped except loopback and this SSH session
+  failsafe: rules auto-removed in 300s even if this script dies
+
+
+### 2. Proof: internet is unreachable
+  [ok] ping 1.1.1.1: blocked
+  [ok] DNS lookup ollama.com: blocked
+  [ok] HTTPS https://ollama.com: blocked
+  [ok] HTTPS https://1.1.1.1: blocked
+  [ok] LAN gateway <lan-gateway>: blocked
+  [ok] local Ollama on 127.0.0.1:11434: reachable
+
+### 3. Run the agent (type y to approve)
+
+== Context ==
+repo:       ~/mini-air-gapped-agent/demo/work (checkpoint 0f76ce4)
+target:     utils.py
+  - utils.py (21 lines)
+  - test_utils.py (29 lines)
+
+== Tests before ==
+baseline: FAILED in 0.3s (1 failed, 5 passed in 0.02s)
+
+== Model qwen3.5:4b ==
+thinking...
+attempt 1: 67.6s, 158 tokens
+
+== Proposed diff (+1 -1) ==
+--- a/utils.py
++++ b/utils.py
+@@ -11,7 +11,7 @@
+     if size <= 0:
+         raise ValueError("size must be positive")
+     out = []
+-    for i in range(0, len(items) - size + 1, size):
++    for i in range(0, len(items), size):
+         out.append(items[i:i + size])
+     return out
+ 
+
+== Approval ==
+Apply this patch to utils.py? [y/N] y
+applied to utils.py; undo with: git -C ~/mini-air-gapped-agent/demo/work checkout -- utils.py
+
+== Tests after ==
+result: PASSED in 0.4s (6 passed in 0.01s)
+
+audit: applied_tests_passed -> ~/mini-air-gapped-agent/audit/audit.jsonl
+
+### 4. Network sockets of the agent (python) and ollama during the run
+  127.0.0.1:* -> 127.0.0.1:11434  users:(("python"))
+  127.0.0.1:* -> 127.0.0.1:*  users:(("ollama"))
+  127.0.0.1:11434 -> 127.0.0.1:*  users:(("ollama"))
+  outbound packets dropped (all processes): packets 3107
+
+### 5. Network restored
+  [ok] ping 1.1.1.1 works again

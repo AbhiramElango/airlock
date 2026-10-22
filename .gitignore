@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+demo/work/
+audit/
+runs/

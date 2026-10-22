@@ -1,0 +1,5 @@
+{
+  "task": "the receipt total is way too high",
+  "expect": [["tax.py"], ["settings.py"]],
+  "why": "demo repo: symptom in receipt.py, cause in tax.py (percent used as a fraction); bill.py has an unrelated bug"
+}

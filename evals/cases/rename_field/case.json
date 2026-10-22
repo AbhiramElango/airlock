@@ -1,0 +1,13 @@
+{
+  "task": "the profile page and the users API both crash with an AttributeError",
+  "expect": [
+    [
+      "views.py",
+      "api.py"
+    ],
+    [
+      "models.py"
+    ]
+  ],
+  "why": "model field was renamed; both callers must be updated (or an alias added in models.py)"
+}

@@ -1,0 +1,9 @@
+{
+  "task": "fix the average in report.py, it shows the wrong number",
+  "expect": [
+    [
+      "stats.py"
+    ]
+  ],
+  "why": "user names the caller, but the bug is in the helper it imports"
+}

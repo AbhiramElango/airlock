@@ -1,0 +1,9 @@
+{
+  "task": "report.py crashes when I run it, can you fix it?",
+  "expect": [
+    [
+      "report.py"
+    ]
+  ],
+  "why": "caller passes too few arguments to a function defined in another file"
+}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Airlock</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <span class="brand">Airlock</span>
+    <span id="net" class="badge">checking network…</span>
+    <select id="model" title="Local model (installed in Ollama)"></select>
+    <span id="model-state" class="meta"></span>
+    <span id="mem" class="meta"></span>
+    <button id="reset" class="small" hidden title="Restore the demo files to their original state">↺ Reset demo</button>
+  </header>
+  <main>
+    <nav id="files-pane">
+      <h2>Files</h2>
+      <ul id="files"></ul>
+    </nav>
+    <section id="editor-pane">
+      <div class="pane-bar">
+        <span id="filename">no file selected</span>
+        <button id="run" disabled>▶ Run</button>
+      </div>
+      <div id="code" class="code"></div>
+      <div class="pane-bar tabs">
+        <button class="tab active" data-tab="output">Output</button>
+        <button class="tab" data-tab="terminal">Terminal</button>
+      </div>
+      <pre id="output" class="output panel"></pre>
+      <div id="terminal" class="output panel term" hidden>
+        <div id="term-log"></div>
+        <form id="term-form"><span class="prompt">$</span><input id="term-input" autocomplete="off" spellcheck="false" placeholder="try: ping 1.1.1.1   (type help)"></form>
+      </div>
+    </section>
+    <aside id="agent-pane">
+      <h2>Agent</h2>
+      <div id="chat"></div>
+      <form id="ask">
+        <input id="question" autocomplete="off" placeholder="Ask, e.g. what is wrong with bill.py?">
+        <button type="submit">Ask</button>
+      </form>
+    </aside>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

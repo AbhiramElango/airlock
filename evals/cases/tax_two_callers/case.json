@@ -1,0 +1,10 @@
+{
+  "task": "orders and invoices both show tax that is way too high",
+  "expect": [
+    [
+      "orders.py",
+      "invoices.py"
+    ]
+  ],
+  "why": "config holds a percentage (pinned by a test); two callers use it as a fraction"
+}

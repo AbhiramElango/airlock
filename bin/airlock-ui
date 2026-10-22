@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Start the local web UI (127.0.0.1 only) with the project's venv.
+here="$(cd "$(dirname "$0")/.." && pwd)"
+PYTHONPATH="$here" exec "${AIRLOCK_PYTHON:-$here/.venv/bin/python}" -m airlock.web "$@"

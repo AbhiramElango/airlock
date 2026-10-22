@@ -1,0 +1,9 @@
+{
+  "task": "what is wrong with bill.py?",
+  "expect": [
+    [
+      "bill.py"
+    ]
+  ],
+  "why": "baseline: the original one-file demo"
+}

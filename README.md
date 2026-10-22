@@ -2,7 +2,10 @@
 
 **An offline AI coding agent that fixes bugs in a sealed container — only with your approval.**
 
-<!-- demo GIF goes here -->
+![Airlock demo: the receipt total is wrong, the agent fixes tax.py offline, the receipt is right](docs/demo.gif)
+
+<sub>Ping fails (no network) · ask in plain English · fix lands in a different file than the symptom · approve ·
+$166.50 → $19.98. The ~90 s model wait is cut.</sub>
 
 Ask in plain English what is wrong with your code. Airlock reads the repo, explains the bug, and proposes a
 minimal fix, all with a **local model** (Qwen 3.5 4B via Ollama). Nothing leaves your machine.
